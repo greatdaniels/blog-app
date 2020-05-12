@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Main Content -->
+<div class="container">
+    
+    <!-- <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-preview">
+          {% for blog in blogs.items %}
+          <a href="#">
+            <h2 class="post-title">
+              {{ blog.title }} 
+            </h2>
+            <h3 class="post-subtitle">
+              {{ blog.content }}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by {{ blog.user.username }}
+            on {{ blog.posted.strftime('%d-%m-%Y') }}</p>
+          <p class="post-meta"> <a class="btn btn-sm btn-primary" href="{{url_for('main.blog',id=blog.id)}}">Comment</a>
+            {{blog.comment.count()}} Comments</p>
+          {% endfor %}
+        </div>
+        <hr>
+      </div> 
+    </div> -->
+
+    <div class="row">
+      {% for blog in blogs.items %}
+      <div class="col-md-6" >
+        <div class="thumbnail" id="carded">
+          <h5 class="card-header">{{blog.title}}</h5>
+          <div class="card-body">
+              <p>{{blog.content}}</p>
+            
+              <footer class="blockquote-footer text-center" > Posted by: {{blog.user.username}} on {{ blog.posted.strftime('%d-%m-%Y') }}</footer>
+            <div><span class="foot" ><a class="btn btn-sm btn-primary" href="{{url_for('main.blog',id=blog.id)}}">Comment</a>{{blog.comment.count()}} Comments</span>     
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <hr>
+
+    <div class="blockquote jumbotron">
+      <h4 class="text-center">{{ quotes['author']}}</h4>
+      <p class="text-center">{{ quotes['quote']}}</p>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8" id="login">
+        <form class="form-inline" action="{{url_for('main.subscribe')}}" method="POST">
+          <div class="md-form form-group">
+            <input type="email" class="form-control " name="subscriber" placeholder="Input email to subscribe" required>
+          </div>
+          <div class="md-form form-group">
+            <button class="btn btn-sm btn-success ml-2" id="subscr">Subscribe</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+
+</div>
+
+{% endblock %}
