@@ -1,0 +1,44 @@
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark " id="nav">
+    <a class="navbar-brand" href="{{url_for('main.index')}}"><strong>Tech-Blog</strong> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('main.index')}}">Home</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.new_blog') }}"><i class="fas fa-comment"></i>Post Blog</a>
+            </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if current_user.is_authenticated %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('main.profile',name=current_user.username)}}"><i class="fas fa-user"></i>&nbsp;<strong>{{current_user.username}}</strong></a>
+            </li>
+
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('main.new_blog') }}"><i class="fas fa-comment"></i>Post Blog</a>
+            </li> -->
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
+            </li>
+
+            {% else %}
+            <li class="nav-item">
+                <a  class="nav-link" href="{{ url_for('auth.login') }}" style= 'margin-right:30px'><i class="fas fa-sign-in-alt"></i>&nbsp; <strong>Login</strong></a>
+            </li>
+            <li class="nav-item">
+                <a style= 'margin-right:30px' class="nav-link" href="{{ url_for('auth.register') }}"><i class="fas fa-user-plus"></i>&nbsp; <strong>Sign Up</strong></a>
+            </li>
+            
+            {% endif %}
+
+        </ul>
+    </div>
+</nav>
