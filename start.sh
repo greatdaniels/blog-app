@@ -1,0 +1,4 @@
+export SECRET_KEY=c317606b09268da1062862b6e81f9616
+export MAIL_USERNAME=realgirduj@gmail.com
+export MAIL_PASSWORD=keymoney20
+python3.6 manage.py server
